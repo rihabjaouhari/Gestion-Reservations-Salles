@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réservation des Salles</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <p class="tag">Projet JavaScript</p>
+        <h1>Gestion des Réservations de Salles</h1>
+        <p class="subtitle">Choisissez une salle, ajoutez une réservation, calculez le total.</p>
+      </div>
+        <button id="themeToggle" class="theme-btn" onclick="toggleTheme()">
+        ☀️Mode clair
+        </button>
+    </header>
+
+    <section class="layout">
+      <aside class="card form-card">
+        <h2>Nouvelle réservation</h2>
+
+        <div id="messageErreur" class="error"></div>
+
+        <div class="field">
+          <label for="salleSelect">Salle</label>
+          <select id="salleSelect">
+            <option value="">-- Choisir une salle --</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="nombreHeures">Nombre d'heures</label>
+          <input type="number" id="nombreHeures" min="1" max="8" placeholder="Ex: 2" />
+        </div>
+
+        <div class="field">
+          <label for="dateReservation">Date de réservation</label>
+          <input type="date" id="dateReservation" />
+        </div>
+
+        <button class="primary-btn" onclick="addReservation()">Ajouter réservation</button>
+
+
+      </aside>
+
+      <section class="card table-card">
+        
+<div class="stats-container">
+  <div class="stat-box">
+    <span>Total des réservations</span>
+    <strong id="totalReservations">0</strong>
+  </div>
+
+  <div class="stat-box">
+    <span>Salles disponibles aujourd'hui</span>
+    <strong id="sallesDisponibles">4</strong>
+  </div>
+</div>
+
+        <div class="section-header">
+          <div>
+            <h2>Liste des réservations</h2>
+            <p>Filtrez, supprimez ou masquez les réservations ajoutées.</p>
+          </div>
+        </div>
+
+        <div class="tools">
+          <div class="field small-field">
+            <label for="capacityFilter">Filtrer par capacité</label>
+            <select id="capacityFilter" onchange="afficherReservations()">
+              <option value="all">Toutes les salles</option>
+              <option value="less20">Moins de 20 places</option>
+              <option value="more20">20 places ou plus</option>
+              <option value="more50">50 places ou plus</option>
+            </select>
+          </div>
+
+          <button class="outline-btn" onclick="toggleTable()">Afficher / Masquer</button>
+        </div>
+
+        <div class="table-wrapper" id="tableWrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Salle</th>
+                <th>Date</th>
+                <th>Heures</th>
+                <th>Capacité</th>
+                <th>Image</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="reservationBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+  
+<div id="confirmation" class="card hidden">
+  <h2>Confirmation de réservation</h2>
+  <p><strong>Numéro :</strong> <span id="confirmationNumero"></span></p>
+  <p><strong>Salle :</strong> <span id="confirmationSalle"></span></p>
+  <p><strong>Date :</strong> <span id="confirmationDate"></span></p>
+  <p><strong>Capacité :</strong> <span id="confirmationCapacite"></span></p>
+  <button onclick="window.print()">Imprimer la confirmation</button>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
